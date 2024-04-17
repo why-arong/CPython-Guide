@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>5. 구성과 입력 &#8212; PseudoLab [CPython 파헤치기]</title>
   
@@ -19,51 +18,50 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/5_0_config_and_input';</script>
-    <link rel="shortcut icon" href="../_static/PseudoLab_logo.png"/>
+    <script>mermaid.initialize({"startOnLoad": true})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="icon" href="../_static/PseudoLab_logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="6. 렉싱과 파싱" href="6_0_rexing_and_parsing.html" />
@@ -77,7 +75,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,12 +118,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -143,12 +160,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/PseudoLab_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/PseudoLab_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/PseudoLab_logo.png" class="logo__image only-light" alt="PseudoLab [CPython 파헤치기] - Home"/>
+    <script>document.write(`<img src="../_static/PseudoLab_logo.png" class="logo__image only-dark" alt="PseudoLab [CPython 파헤치기] - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -336,20 +364,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -405,10 +435,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>5. 구성과 입력<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>5. 구성과 입력<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <p>이번 챕터를 통해 다음 내용을 배울 수 있습니다.</p>
 <ol class="arabic simple">
 <li><p>CPython 인터프리터의 빌드부터 파이썬 코드 실행까지의 과정에 대한 코드 레벨의 이해</p></li>
@@ -416,7 +446,7 @@ document.write(`
 <li><p>인터프리터의 입력에서 모듈을 만드는 과정</p></li>
 </ol>
 <section id="cpython-interpreter-execution-overview">
-<h2>5.0 CPython Interpreter Execution Overview<a class="headerlink" href="#cpython-interpreter-execution-overview" title="Permalink to this heading">#</a></h2>
+<h2>5.0 CPython Interpreter Execution Overview<a class="headerlink" href="#cpython-interpreter-execution-overview" title="Link to this heading">#</a></h2>
 <p>인터프리터가 실행되는 흐름은 다음과 같습니다.
 <img alt="" src="../_images/interpreter_overview.png" />
 이 때, 세 가지 요소가 중요합니다.</p>
@@ -428,16 +458,15 @@ document.write(`
 <p>세 가지 요소로 넘어가기 전에, 인터프리터가 실행되는 과정에 대한 이해를 높여보겠습니다. 인터프리터의 생성부터 실행까지의 과정을 코드 레벨로 정리하면 다음과 같습니다.</p>
 <ol class="arabic">
 <li><p>인터프리터 생성 (= <code class="docutils literal notranslate"><span class="pre">3.컴파일하기</span></code>)</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
-A(&quot;`CPython Source Code`&quot;) --&gt; |Build|C(&quot;`CPython Interpreter`&quot;)
-</pre></div>
-</div>
-<ul>
+<div class="mermaid" align="center">
+graph LR
+A("`CPython Source Code`") --> |Build|C("`CPython Interpreter`")
+</div><ul>
 <li><p>책에서는 CPython Source Code를 compile 해서 인터프리터를 생성한다고 표현하기도 하고, build한다고도 표현합니다. <strong>Build</strong> 과정에는 <strong>Compile</strong> 과정이 포함되어 있기 때문에, 굳이 구분하지 않고 혼용해서 사용하는 것으로 보입니다.</p></li>
 <li><p>또한, 빌드 결과물인 <strong>CPython Binary</strong>와 <strong>executable interpreter</strong>(작동하는 인터프리터)를 같은 용어로 사용하고 있습니다. <strong>CPython Interpreter</strong>로 이해해도 될 듯 합니다. <strong>“CPython 소스 코드를 빌드해서 파이썬 인터프리터를 생성했구나”</strong> 라고 생각하면 되겠습니다.</p></li>
 <li><p>인터프리터 파일은 윈도우, 맥 모두 <strong>python.exe</strong> 파일로 생성됩니다. 확장자는 <strong>Makefile</strong>의 <code class="docutils literal notranslate"><span class="pre">BUILDEXE</span></code> 변수로 변경할 수 있습니다.</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="c"># Executable suffix (.exe on Windows and Mac OS X)</span>
-<span class="nv">EXE</span><span class="o">=</span><span class="w">		</span>
+<span class="nv">EXE</span><span class="o">=</span>
 <span class="nv">BUILDEXE</span><span class="o">=</span><span class="w">	</span>.exe
 </pre></div>
 </div>
@@ -465,24 +494,24 @@ A(&quot;`CPython Source Code`&quot;) --&gt; |Build|C(&quot;`CPython Interpreter`
 </li>
 <li><p>인터프리터 시작: 운영 체제에 따른 main 선택 (<code class="docutils literal notranslate"><span class="pre">./python.exe</span></code>)</p>
 <p><strong>Programs/python.c</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>```c
-/* Minimal main program -- everything is loaded from the library */
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="err">```</span><span class="n">c</span>
+<span class="cm">/* Minimal main program -- everything is loaded from the library */</span>
 
-#include &quot;Python.h&quot;
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Python.h&quot;</span>
 
-#ifdef MS_WINDOWS
-int
-wmain(int argc, wchar_t **argv)
-{
-    return Py_Main(argc, argv);
-}
-#else
-int
-main(int argc, char **argv)
-{
-    return Py_BytesMain(argc, argv); // macOS
-}
-#endif
+<span class="cp">#ifdef MS_WINDOWS</span>
+<span class="kt">int</span>
+<span class="n">wmain</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Py_Main</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">#else</span>
+<span class="kt">int</span>
+<span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Py_BytesMain</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"> </span><span class="c1">// macOS</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
 
 </pre></div>
 </div>
@@ -524,8 +553,8 @@ main(int argc, char **argv)
 </pre></div>
 </div>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">pymain_init()</span></code>의 리턴인 <code class="docutils literal notranslate"><span class="pre">PyStatus</span></code>는 <code class="docutils literal notranslate"><span class="pre">OK</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXIT</span></code> 3가지 타입을 갖습니다.</p>
-<p><strong>Include/cpython/initconfig.h: L10-L19</strong></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">pymain_init()</span></code>의 리턴인 <code class="docutils literal notranslate"><span class="pre">PyStatus</span></code>는 <code class="docutils literal notranslate"><span class="pre">OK</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXIT</span></code> 3가지 타입을 갖습니다.
+<strong>Include/cpython/initconfig.h: L10-L19</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">_PyStatus_TYPE_OK</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -619,7 +648,7 @@ main(int argc, char **argv)
 </ol>
 </section>
 <section id="configuration-state">
-<h2>5.1 Configuration State (구성 상태)<a class="headerlink" href="#configuration-state" title="Permalink to this heading">#</a></h2>
+<h2>5.1 Configuration State (구성 상태)<a class="headerlink" href="#configuration-state" title="Link to this heading">#</a></h2>
 <p>파이썬 코드를 실행하기 전에, CPython 런타임은 먼저 <strong>configuration of the runtime</strong>과 <strong>user-provided options</strong>을 설정합니다.</p>
 <p>Configuration of the runtime은 세 부분으로 나뉘어 있습니다. (<a class="reference external" href="https://peps.python.org/pep-0587/">PEP 587</a>).</p>
 <ol class="arabic simple">
@@ -628,7 +657,7 @@ main(int argc, char **argv)
 <li><p>The <strong>compiled(=build) configuration</strong> of the CPython Interpreter</p></li>
 </ol>
 <section id="preinitialization-configuration">
-<h3>Preinitialization Configuration<a class="headerlink" href="#preinitialization-configuration" title="Permalink to this heading">#</a></h3>
+<h3>Preinitialization Configuration<a class="headerlink" href="#preinitialization-configuration" title="Link to this heading">#</a></h3>
 <p><strong>preinitialization configuration</strong>은 operating system 혹은 user environment와 관련된 설정이기 때문에, runtime configuration과 구분됩니다.</p>
 <p>다음은 <code class="docutils literal notranslate"><span class="pre">PyPreConfig</span></code>의 세 가지 주요 기능입니다.</p>
 <ul>
@@ -663,8 +692,10 @@ main(int argc, char **argv)
 <li><p><code class="docutils literal notranslate"><span class="pre">parse_argv</span></code>: 0이 아니면 명령줄 인자(command-line arguments)를 사용합니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">use_environment</span></code>: 0보다 큰 값이면 환경 변수를 사용합니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">utf8_mode</span></code>: 0이 아니면 UTF-8 모드를 활성화합니다.</p></li>
-<li>  <details>
-      <summary> (참고) PyPreConfig 구조체 </summary>
+<li><details>
+    <summary> (참고) PyPreConfig 구조체 </summary>
+</li>
+</ul>
 <p><strong>Include/cpython/initconfig.h: L45-L125</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* --- PyPreConfig ----------------------------------------------- */</span>
 
@@ -749,25 +780,25 @@ main(int argc, char **argv)
 <span class="p">}</span><span class="w"> </span><span class="n">PyPreConfig</span><span class="p">;</span>
 </pre></div>
 </div>
-</details>
-</li>
-</ul>
+  </details>
 </section>
 <section id="related-source-files">
-<h3>Related Source Files<a class="headerlink" href="#related-source-files" title="Permalink to this heading">#</a></h3>
+<h3>Related Source Files<a class="headerlink" href="#related-source-files" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Python/initconfig.c</span></code>: 시스템 환경에서 불러온 configuration을 명령줄 플래그(command-line flags)와 결합합니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Include/cpython/initconfig.h</span></code>: <code class="docutils literal notranslate"><span class="pre">PyPreConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">PyConfig</span></code>의 구조체가 정의되어 있습니다.</p></li>
 </ul>
 </section>
 <section id="runtime-configuration-data-structure">
-<h3>Runtime Configuration Data Structure<a class="headerlink" href="#runtime-configuration-data-structure" title="Permalink to this heading">#</a></h3>
+<h3>Runtime Configuration Data Structure<a class="headerlink" href="#runtime-configuration-data-structure" title="Link to this heading">#</a></h3>
 <p>Configuration의 두 번째 단계는 <strong>runtime configuration</strong>이다. <code class="docutils literal notranslate"><span class="pre">PyConfig</span></code>(runtime configuration 구조체)는 다음과 같은 값들을 포함합니다.</p>
 <ul>
 <li><p><strong>Runtime flags</strong> for modes like <code class="docutils literal notranslate"><span class="pre">debug</span></code> and <code class="docutils literal notranslate"><span class="pre">optimized</span></code></p></li>
 <li><p>The <strong>mode of execution</strong>, such as a <code class="docutils literal notranslate"><span class="pre">script</span> <span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">stdin</span></code>, or <code class="docutils literal notranslate"><span class="pre">module</span></code></p></li>
-<li>  <details>
-      <summary> -X option 으로 설정 가능한 확장 옵션(extended options)</summary>
+<li><details>
+    <summary> -X option 으로 설정 가능한 확장 옵션(extended options)</summary>
+</li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">X</span> <span class="n">opt</span> <span class="p">:</span> <span class="nb">set</span> <span class="n">implementation</span><span class="o">-</span><span class="n">specific</span> <span class="n">option</span><span class="o">.</span> <span class="n">The</span> <span class="n">following</span> <span class="n">options</span> <span class="n">are</span> <span class="n">available</span><span class="p">:</span>
 
          <span class="o">-</span><span class="n">X</span> <span class="n">faulthandler</span><span class="p">:</span> <span class="n">enable</span> <span class="n">faulthandler</span>
@@ -802,13 +833,15 @@ main(int argc, char **argv)
              <span class="n">The</span> <span class="n">default</span> <span class="ow">is</span> <span class="n">sys</span><span class="o">.</span><span class="n">int_info</span><span class="o">.</span><span class="n">default_max_str_digits</span><span class="o">.</span>  <span class="mi">0</span> <span class="n">disables</span><span class="o">.</span>
 </pre></div>
 </div>
-  </details>
-</li>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;/details&gt;
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>Environment variables for runtime settings</p></li>
 </ul>
 </section>
 <section id="setting-runtime-configuration-with-the-command-line">
-<h3>Setting Runtime Configuration with the Command Line<a class="headerlink" href="#setting-runtime-configuration-with-the-command-line" title="Permalink to this heading">#</a></h3>
+<h3>Setting Runtime Configuration with the Command Line<a class="headerlink" href="#setting-runtime-configuration-with-the-command-line" title="Link to this heading">#</a></h3>
 <p>파이썬은 다양한 명령줄 인터페이스 옵션(command-line interface options)을 제공합니다. 대표적인 예시로 verbose mode가 있습니다. 주로 CPython을 디버깅하려는 개발자들을 위한 모드입니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">-v</span></code> 플래그로 verbose mode를 활성화하면, 파이썬은 모듈을 로딩할 때마다 화면에 메시지를 출력합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./python<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;hello world&#39;)&quot;</span>
@@ -830,7 +863,7 @@ import<span class="w"> </span>zipimport<span class="w"> </span><span class="c1">
 <img alt="" src="../_images/config.png" /></p>
 </section>
 <section id="viewing-runtime-flags">
-<h3>Viewing Runtime Flags<a class="headerlink" href="#viewing-runtime-flags" title="Permalink to this heading">#</a></h3>
+<h3>Viewing Runtime Flags<a class="headerlink" href="#viewing-runtime-flags" title="Link to this heading">#</a></h3>
 <p>CPython 인터프리터는 많은 runtime flags가 있습니다. 플래그는 CPython의 특정 동작을 제어하는데 사용되는 고급 기능이다. 파이썬 세션 중에, <code class="docutils literal notranslate"><span class="pre">sys.flags</span></code> 네임드 튜플을 통해 runtime flags에 접근할 수 있습니다.</p>
 <ul>
 <li><p>플래그 사용 X</p>
@@ -888,7 +921,7 @@ sys.flags<span class="o">(</span><span class="nv">debug</span><span class="o">=<
 </section>
 </section>
 <section id="build-configuration">
-<h2>5.2 Build Configuration (빌드 구성)<a class="headerlink" href="#build-configuration" title="Permalink to this heading">#</a></h2>
+<h2>5.2 Build Configuration (빌드 구성)<a class="headerlink" href="#build-configuration" title="Link to this heading">#</a></h2>
 <p><strong>Runtime configuration</strong>을 <code class="docutils literal notranslate"><span class="pre">Include/cpython/initconfig.h</span></code>에 정의하듯이, <strong>build configuration</strong>은 root 디렉토리의 <code class="docutils literal notranslate"><span class="pre">pyconfig.h</span></code>에서 정의합니다. 이 파일은 <code class="docutils literal notranslate"><span class="pre">./configure</span></code> 단계 (macOS or Linux)나, <code class="docutils literal notranslate"><span class="pre">build.bat</span></code> 실행 (Windows) 중에 자동으로 생성됩니다.</p>
 <p>다음 명령어로 build configuration을 확인할 수 있습니다.</p>
 <ul>
@@ -952,7 +985,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 <p>세 단계의 구성(Build Configuration, PyPreConfig, PyConfig)을 모두 완료하면, CPython Interpreter는 입력된 텍스트를 코드로 실행할 수 있게 됩니다.</p>
 </section>
 <section id="id2">
-<h2>5.3 입력에서 모듈 만들기<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>5.3 입력에서 모듈 만들기<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><img alt="" src="../_images/input.png" /></p>
 <p>코드를 실행하려면 먼저 입력을 모듈로 컴파일해야 합니다.</p>
 <ul class="simple">
@@ -966,7 +999,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ul>
 <p>이렇게 읽어 들인 입력은 파서를 거쳐 컴파일러로 전달 됩니다. 이렇게 유연한 입력 방식을 제공하기 위해 CPython은 CPython 소스 코드의 상당 분량을 파서의 입력 처리에 사용합니다.</p>
 <section id="id3">
-<h3>연관된 소스 파일 목록<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3>연관된 소스 파일 목록<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Lib &gt; <a class="reference external" href="http://runpy.py">runpy.py</a> : 파이썬 모듈을 임포트 하고 실행하는 표준 라이브러리 모듈</p></li>
 <li><p>Modules &gt; main.c : 파일이나 모듈, 입력 스트림 같은 외부 코드 실행을 감싸는 함수</p></li>
@@ -975,7 +1008,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ul>
 </section>
 <section id="id4">
-<h3>입력과 파일 읽기<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3>입력과 파일 읽기<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>CPython은 런타임 구성과 명령줄 인자가 준비되면 실행할 코드를 불러옵니다.</p>
 <ul class="simple">
@@ -991,7 +1024,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ol>
 </section>
 <section id="id5">
-<h3>명령줄 문자열 입력<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3>명령줄 문자열 입력<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>⭐ <strong>-c 옵션을 사용해 명령줄에서 파이썬 애플리케이션을 실행하는 경우</strong></p>
 <ul class="simple">
@@ -1048,7 +1081,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ol>
 </section>
 <section id="id6">
-<h3>로컬 모듈 입력<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3>로컬 모듈 입력<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>⭐ <strong>-m 옵션을 사용해 모듈을 실행하는 경우</strong></p>
 <ul class="simple">
@@ -1130,9 +1163,9 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 
 <span class="c1"># Output</span>
 <span class="c1"># ModuleSpec(</span>
-<span class="c1">#    name=&#39;unittest&#39;, </span>
-<span class="c1">#    loader=&lt;_frozen_importlib_external.SourceFileLoader object at 0x7fe01263bd30&gt;, </span>
-<span class="c1">#    origin=&#39;/home/patrick/miniconda3/envs/py3.10/lib/python3.10/unittest/__init__.py&#39;, </span>
+<span class="c1">#    name=&#39;unittest&#39;,</span>
+<span class="c1">#    loader=&lt;_frozen_importlib_external.SourceFileLoader object at 0x7fe01263bd30&gt;,</span>
+<span class="c1">#    origin=&#39;/home/patrick/miniconda3/envs/py3.10/lib/python3.10/unittest/__init__.py&#39;,</span>
 <span class="c1">#    submodule_search_locations=[&#39;/home/patrick/miniconda3/envs/py3.10/lib/python3.10/unittest&#39;],</span>
 <span class="c1"># )</span>
 
@@ -1140,8 +1173,8 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 
 <span class="c1"># Output</span>
 <span class="c1"># ModuleSpec(</span>
-<span class="c1">#    name=&#39;itertools&#39;, </span>
-<span class="c1">#    loader=&lt;class &#39;_frozen_importlib.BuiltinImporter&#39;&gt;, </span>
+<span class="c1">#    name=&#39;itertools&#39;,</span>
+<span class="c1">#    loader=&lt;class &#39;_frozen_importlib.BuiltinImporter&#39;&gt;,</span>
 <span class="c1">#    origin=&#39;built-in&#39;</span>
 <span class="c1"># )</span>
 </pre></div>
@@ -1188,7 +1221,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ol>
 </section>
 <section id="id7">
-<h3>표준 입력 또는 스크립트 파일 입력<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3>표준 입력 또는 스크립트 파일 입력<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>⭐ <strong>python <a class="reference external" href="http://test.py">test.py</a></strong></p>
 </div></blockquote>
@@ -1372,7 +1405,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </ol>
 </section>
 <section id="id8">
-<h3>컴파일된 바이트 코드 입력<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3>컴파일된 바이트 코드 입력<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>python을 .pyc 파일 경로와 함께 실행하면 CPython은 파일을 텍스트 파일로 불러와 파싱하는 대신 .pyc 파일에서 디스크에 기록된 코드 객체를 찾습니다.</p></li>
 <li><p>Python &gt; pythonrun.c의 run_pyc_file()은 파일 핸들을 사용해 .pyc 파일에서 코드 객체를 마셜링합니다.</p>
@@ -1386,7 +1419,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>CPython 파헤치기 내용 정리 블로그</p>
 <ul>
@@ -1428,8 +1461,10 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
 
               
               
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="4_0_python_grammar.html"
@@ -1457,6 +1492,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1492,7 +1528,7 @@ make<span class="w"> </span>-j2<span class="w"> </span>-s
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1505,9 +1541,10 @@ By PseudoLab
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1522,7 +1559,7 @@ By PseudoLab
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1531,8 +1568,8 @@ By PseudoLab
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
   </footer>
