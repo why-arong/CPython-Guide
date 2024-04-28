@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>6. 렉싱과 파싱 &#8212; PseudoLab [CPython 파헤치기]</title>
   
@@ -18,50 +19,51 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/6_0_rexing_and_parsing';</script>
-    <script>mermaid.initialize({"startOnLoad": true})</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="icon" href="../_static/PseudoLab_logo.png"/>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/6_0_rexing_and_parsing';</script>
+    <link rel="shortcut icon" href="../_static/PseudoLab_logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. 컴파일러" href="7_0_compiler.html" />
@@ -75,16 +77,7 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -118,20 +111,12 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-  </header>
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -146,11 +131,9 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../intro.html">
-  
   
   
   
@@ -160,23 +143,12 @@
       
     
     
-    <img src="../_static/PseudoLab_logo.png" class="logo__image only-light" alt="PseudoLab [CPython 파헤치기] - Home"/>
-    <script>document.write(`<img src="../_static/PseudoLab_logo.png" class="logo__image only-dark" alt="PseudoLab [CPython 파헤치기] - Home"/>`);</script>
+    <img src="../_static/PseudoLab_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/PseudoLab_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -364,22 +336,20 @@
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -420,18 +390,18 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>6. 렉싱과 파싱<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>6. 렉싱과 파싱<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference internal" href="#%EB%A0%89%EC%8B%B1%EA%B3%BC-%ED%8C%8C%EC%8B%B1"><span class="xref myst">렉싱과 파싱</span></a></p>
+<li><p><span class="xref myst">렉싱과 파싱</span></p>
 <ul>
-<li><p><a class="reference internal" href="#60-%EA%B0%9C%EC%9A%94"><span class="xref myst">6.0 개요</span></a></p></li>
-<li><p><a class="reference internal" href="#61-cst-%EC%83%9D%EC%84%B1"><span class="xref myst">6.1 CST 생성</span></a></p></li>
-<li><p><a class="reference internal" href="#62-%ED%8C%8C%EC%84%9C--%ED%86%A0%ED%81%AC%EB%82%98%EC%9D%B4%EC%A0%80"><span class="xref myst">6.2 파서 &amp; 토크나이저</span></a></p></li>
-<li><p><a class="reference internal" href="#63-%EC%B6%94%EC%83%81-%EA%B5%AC%EB%AC%B8-%ED%8A%B8%EB%A6%AC"><span class="xref myst">6.3 추상 구문 트리</span></a></p></li>
-<li><p><a class="reference internal" href="#64-%EC%A0%95%EB%A6%AC"><span class="xref myst">6.4 정리</span></a></p></li>
+<li><p><span class="xref myst">6.0 개요</span></p></li>
+<li><p><span class="xref myst">6.1 CST 생성</span></p></li>
+<li><p><span class="xref myst">6.2 파서 &amp; 토크나이저</span></p></li>
+<li><p><span class="xref myst">6.3 추상 구문 트리</span></p></li>
+<li><p><span class="xref myst">6.4 정리</span></p></li>
 </ul>
 </li>
 </ul>
@@ -439,7 +409,7 @@ document.write(`
 <br/>
 <br/>
 <section id="id2">
-<h2>6.0 개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2>6.0 개요<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>파이썬은 문법을 해석하기 위해서 CST(Concrete syntax tree) 와 AST(Abstract syntax tree) 두 가지 구조를 사용합니다. CST 와 AST 2단계를 통해서 문법을 파싱하게 되는데, 이번 챕터를 통해서 CST 와 AST 를 살펴보겠습니다.
 <br/></p>
 <p><img alt="parse_tree" src="../_images/01_parse_tree.png" /></p>
@@ -448,7 +418,7 @@ document.write(`
 <br/>
 </section>
 <section id="cst">
-<h2>6.1 CST 생성<a class="headerlink" href="#cst" title="Link to this heading">#</a></h2>
+<h2>6.1 CST 생성<a class="headerlink" href="#cst" title="Permalink to this heading">#</a></h2>
 <p>파스 트리라고도 부르는 CST 는 작성한 코드를 루트와 순서가 있는 트리구조로 바꾸는 일련의 작업을 의미합니다. 다음은 CST 구문을 사용하여 a + 1 을 산술표현식으로 표현한 예입니다.</p>
 <p><img alt="CST_EXPR" src="../_images/00_CST_EXPR.jpg" /></p>
 <br/>
@@ -461,7 +431,7 @@ document.write(`
 <br/>
 </section>
 <section id="id3">
-<h2>6.2 파서 &amp; 토크나이저<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2>6.2 파서 &amp; 토크나이저<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>C-Python의 파서-토크나이저를 통해서, CST 의 골격 구조를 완성할 수 있는데, 다음과 같이 파서-토크나이저를 통해 연속적인 CST 트리 구조를 완성할 수 있습니다.</p>
 <p><img alt="Parser_Tokenizer" src="../_images/02_Parser_Tokenizer.jpg" /></p>
 <br/>
@@ -479,7 +449,7 @@ document.write(`
 <br/>
 </section>
 <section id="id4">
-<h2>6.3 추상 구문 트리<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>6.3 추상 구문 트리<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p><em>추상 구문 트리 단계</em>는 CST 로 변환한 트리를 좀 더 논리적인 구조로 변환하는 단계입니다. CST는 코드 파일의 텍트를 있는 그대로 표현하는 구조로 텍스트로부터 토큰을 추출하여, 토큰 종류만 구분해 둔 상태에 불과합니다.(즉 CST 로 기본적인 문법 구조를 알 수 있지만, 함수, 스코프, 루프 등등 상세한 정보를 파악하기는 힘들다고 합니다..) 따라서 코드를 컴파일하기 전에 CST 를 실제 파이썬 언어 구조와 의미 요소를 표현하는 고수준 구조인 AST 로 변환해야 합니다.</p>
 <p>다음은 AST 와 관련된 소스파일 목록입니다.</p>
 <ol class="arabic simple">
@@ -494,7 +464,7 @@ document.write(`
 <br/>
 </section>
 <section id="id5">
-<h2>6.4 정리<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>6.4 정리<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>AST : 파이썬 문법과 문장들에 대한 <em>문맥</em>(context) 있는* 트리 집합.</p></li>
 <li><p>CST : 토큰과 심벌에 대한 <em>문맥(context)이 없는</em> 트리 집합</p></li>
@@ -504,8 +474,7 @@ document.write(`
 </ul>
 <br/>
 <br/>
-<br/>
-</section>
+<br/></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -533,10 +502,8 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer">
-                  
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="5_0_config_and_input.html"
@@ -565,7 +532,6 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -585,7 +551,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            
+            <div class="bd-footer-content__inner">
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -598,10 +564,9 @@ By PseudoLab
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -616,7 +581,7 @@ By PseudoLab
     
   </div>
   
-</div>
+</div></div>
           </footer>
         
 
@@ -625,8 +590,8 @@ By PseudoLab
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
   <footer class="bd-footer">
   </footer>
