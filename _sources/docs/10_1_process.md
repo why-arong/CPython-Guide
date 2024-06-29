@@ -1,4 +1,4 @@
-# 10.1 프로세스
+# 10.1 멀티 프로세스
 
 ## 프로세스 구조
 
@@ -9,16 +9,13 @@ CPython에서 프로세스는 컴파일된 CPython 인터프리터와 모듈로 
 
 ![process](../images/10_parallel_and_concurrent/process.png)
 
-| 컴포넌트 | 설명 |
-| --- | --- |
-| 스택(Stack) | 함수 호출, 지역 변수 및 제어 정보가 저장되는 메모리 영역 |
-| 힙(Heap) | 동적 메모리 할당에 사용되는 메모리 영역 |
-| 명령(Instructions) | 운영체제가 파일 및 I/O 리소스에 접근하기 위해 사용하는 핸들,
-프로세스가 파일을 읽거나 쓰기 위해 운영체제로부터 제공받아 사용 |
-| 잠금(Lock 또는 Mutex) | 다중 쓰레드가 공유 자원에 동시에 접근하는 것을 제어하기 위해 사용되는 동기화 초기 값,
-Race Condition을 방지하기 위해 하나의 쓰레드만 자원에 접근 가능하도록 만들어줌 |
-| 소켓(Socket) | 네트워크 상 두 컴퓨터 간 통신 끝 점을 의미한다.
-TCP/IP 또는 UDP 통신과 같은 다양한 유형의 네트워크 통신에 사용 |
+| 컴포넌트              | 설명                                                                                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 스택(Stack)           | 함수 호출, 지역 변수 및 제어 정보가 저장되는 메모리 영역                                                                                                             |
+| 힙(Heap)              | 동적 메모리 할당에 사용되는 메모리 영역                                                                                                                              |
+| 명령(Instructions)    | 운영체제가 파일 및 I/O 리소스에 접근하기 위해 사용하는 핸들, 프로세스가 파일을 읽거나 쓰기 위해 운영체제로부터 제공받아 사용                                         |
+| 잠금(Lock 또는 Mutex) | 다중 쓰레드가 공유 자원에 동시에 접근하는 것을 제어하기 위해 사용되는 동기화 초기 값, Race Condition을 방지하기 위해 하나의 쓰레드만 자원에 접근 가능하도록 만들어줌 |
+| 소켓(Socket)          | 네트워크 상 두 컴퓨터 간 통신 끝 점을 의미한다. TCP/IP 또는 UDP 통신과 같은 다양한 유형의 네트워크 통신에 사용                                                       |
 
 위 컴포넌트들은 모두 인터프리터 상태의 구성요소이다.
 
@@ -31,15 +28,12 @@ TCP/IP 또는 UDP 통신과 같은 다양한 유형의 네트워크 통신에 �
 그리고 컴퓨터의 CPU는 프로세스를 실행할 때 아래와 같은 추가 데이터가 필요하다.
 
 - 프로그램 카운터(명령 포인터):
-    - 프로그램 시퀸스의 어떤 명령을 실행 중인지 저장
+  - 프로그램 시퀸스의 어떤 명령을 실행 중인지 저장
 - 프로그램 레지스터:
-    - 실행 중인 명령이나, 명령을 실행하는 데 필요한 데이터를 보관
-
- 
+  - 실행 중인 명령이나, 명령을 실행하는 데 필요한 데이터를 보관
 
 > 프로그램 카운터 : 현재 실행 중인 명령의 주소를 저장
-프로그램 레지스터 : 현재 실행 중인 명령어와 관련된 데이터를 저장하고 처리
-> 
+> 프로그램 레지스터 : 현재 실행 중인 명령어와 관련된 데이터를 저장하고 처리
 
 프로그램 레지스터와 프로그램 카운터는 프로세스에 저장된 명령 중 한 명령만 가리킨다.
 즉, 한 번에 하나의 명령만 사용 가능하다.
@@ -47,24 +41,24 @@ TCP/IP 또는 UDP 통신과 같은 다양한 유형의 네트워크 통신에 �
 이 방식은 CPython에서 아래와 같은 영향을 미친다.
 
 - GIL(Global Interpreter Lock)
-    - 한 번에 하나의 쓰레드만 파이썬의 바이트코드로 실행하도록 제한
-    - 이는 멀티 쓰레딩 환경에서 동시 실행을 제한함
+  - 한 번에 하나의 쓰레드만 파이썬의 바이트코드로 실행하도록 제한
+  - 이는 멀티 쓰레딩 환경에서 동시 실행을 제한함
     단, I/O 바운드 작업은 GIL의 영향을 받지 않음 (파일 읽기/쓰기, 네트워크 통신 등…)
 - 멀티코어 활용 부족
-    - 멀티코어 환경에서 CPython의 GIL로 인해 효율적으로 코어를 사용하기는 어려움
+  - 멀티코어 환경에서 CPython의 GIL로 인해 효율적으로 코어를 사용하기는 어려움
 
 때문에 파이썬에서 프로세스의 명령을 병렬로 실행하려면 아래의 2가지 방법을 사용할 수 있다.
 
-1) 인터프리터 Fork (POSIX)
+1. 인터프리터 Fork (POSIX)
 
-2) 새 인터프리터 프로세스 Spawn (POSIX/윈도우)
+2. 새 인터프리터 프로세스 Spawn (POSIX/윈도우)
 
 ## 멀티프로세스를 활용한 병렬 실행
 
 POSIX 시스템은 Fork API를 기본으로 제공한다.
 때문에 어떤 프로세스든 이 API를 통해 자식 프로세스를 Fork 할 수 있다.
 
-Fork 호출이 일어나면 
+Fork 호출이 일어나면
 현재 실행 중인 프로세스의 모든 Attribute를 복제해 새 프로세스를 생성한다.
 
 이 때 부모의 힙과 레지스터, 카운터 위치도 새 프로세스로 복제된다.
@@ -95,7 +89,7 @@ int main(int argc, char** argv) {
 	int number = atoi(argv[1]);
 	for (int i = 1; i <= number; i++) {
 		double f_value = 100 + (i * 10);
-		
+
 		pid_t child = fork();
 		if (child == 0) {   // 자식 프로세스에서는 0이다.
 			double c_value = celsius(f_value);
@@ -104,7 +98,7 @@ int main(int argc, char** argv) {
 	}
 	printf("Spawned %d processes from %d\n", number, getpid());
 	return 0;
-} 
+}
 ```
 
 위 프로그램을 명령줄에서 실행하면 아래와 같은 결과가 출력된다.
@@ -136,30 +130,22 @@ CPython의 경우 프로세스를 Fork 하면 2개 이상의 CPython 인터프�
 프로세스를 Fork할 때의 오버헤드보다 클 때 사용하는 것이 좋다
 
 > 작업의 크기나 시간이 충분히 커서,
-프로세스를 Fork 하는 데 드는 시간 비용보다
-작업을 병렬로 처리하는 것이 더 효율적이라 판단될 때
-> 
+> 프로세스를 Fork 하는 데 드는 시간 비용보다
+> 작업을 병렬로 처리하는 것이 더 효율적이라 판단될 때
+
 <details>
 <summary>연관된 소스 파일 목록</summary>
-
 다음은 멀티프로세싱과 관련된 소스 파일 목록이다.
 
-| 파일 | 목적 |
-| --- | --- |
-| Lib/multiprocessing        | multiprocessing 패키지의 파이썬 소스 파일   |
-| Modules/_posixsubprocess.c | POSIX fork() 시스템 콜을 래핑하는 C 확장 모듈 |
-| Modules/_winapi.c   |  윈도우 커널 API를 제공하는 C 확장 모듈       |
-| PC/msvcrtmodule.c | 마이크로소프트 비주얼 C 런타임 라이브러리의 파이썬용 인터페이스 |
+| 파일                        | 목적                                                            |
+| --------------------------- | --------------------------------------------------------------- |
+| Lib/multiprocessing         | multiprocessing 패키지의 파이썬 소스 파일                       |
+| Modules/\_posixsubprocess.c | POSIX fork() 시스템 콜을 래핑하는 C 확장 모듈                   |
+| Modules/\_winapi.c          | 윈도우 커널 API를 제공하는 C 확장 모듈                          |
+| PC/msvcrtmodule.c           | 마이크로소프트 비주얼 C 런타임 라이브러리의 파이썬용 인터페이스 |
+
 </details>
-    
-    다음은 멀티프로세싱과 관련된 소스 파일 목록이다.
-    
-    | 파일 | 목적 |
-    | --- | --- |
-    | Lib/multiprocessing        | multiprocessing 패키지의 파이썬 소스 파일   |
-    | Modules/_posixsubprocess.c | POSIX fork() 시스템 콜을 래핑하는 C 확장 모듈 |
-    | Modules/_winapi.c   |  윈도우 커널 API를 제공하는 C 확장 모듈       |
-    | PC/msvcrtmodule.c | 마이크로소프트 비주얼 C 런타임 라이브러리의 파이썬용 인터페이스 |
+
 
 ### Spawn과 Fork
 
@@ -170,8 +156,7 @@ CPython의 경우 프로세스를 Fork 하면 2개 이상의 CPython 인터프�
 3. fork 서버를 실행한 후에 원하는 수 만큼의 프로세스를 fork (POSIX 전용)
 
 > windows/macOS는 Spawn을 기본으로 사용하고 리눅스에서는 Fork를 사용한다.
-`multiprocessing.set_start_method()`를 사용해 변경할 수 있다.
-> 
+> `multiprocessing.set_start_method()`를 사용해 변경할 수 있다.
 
 **인터프리터 Fork (POSIX)**
 
@@ -179,7 +164,6 @@ CPython의 경우 프로세스를 Fork 하면 2개 이상의 CPython 인터프�
 새 프로세스는 복제 시점에서 부모 프로세스와 완전히 동일함
 
 > 부모 프로세스의 상태를 그대로 복제 → 동일한 인터프리터 상태로 시작
-> 
 
 **새 인터프리터 프로세스 Spawn (POSIX/윈도우)**
 
@@ -187,11 +171,10 @@ CPython의 경우 프로세스를 Fork 하면 2개 이상의 CPython 인터프�
 때문에 부모 프로세스와 독립적인 메모리 공간을 사용한다.
 
 > 새로운 프로세스를 생성 → 초기화된 인터프리터로 시작
-> 
 
 **Fork 서버를 실행한 후에 원하는 수 만큼의 프로세스를 Fork (POSIX)**
 
-별도의 프로세스를 Fork 서버로 만들어 둔 후, 
+별도의 프로세스를 Fork 서버로 만들어 둔 후,
 필요한 만큼의 프로세스를 이 서버를 통해 fork한다.
 
 부모 프로세스가 아닌 별도의 서버 프로세스를 통해 Fork하는 방식이다.
@@ -255,7 +238,7 @@ def to_celsius(f):
 if __name__ == '__main__':
 	mp.set_start_method('spawn')
 	with mp.Pool(4, maxtasksperchild=1) as pool:
-		pool.map(to_celsius, range(110, 150, 10)) 
+		pool.map(to_celsius, range(110, 150, 10))
 ```
 
 ![mp_2](../images/10_parallel_and_concurrent/mp_result2.png)
@@ -277,10 +260,10 @@ if __name__ == '__main__':
 	mp.set_start_method('spawn')
 	with mp.Pool(4, maxtasksperchild=1) as pool:
 	  # 이 부분이 pickle을 통한 데이터 전송이 이루어지는 부분
-		pool.map(to_celsius, range(110, 150, 10))   
+		pool.map(to_celsius, range(110, 150, 10))
 ```
 
-위 예제에서는 부모 프로세스에서 존재하는 데이터를 `pool.map` 을 통해 
+위 예제에서는 부모 프로세스에서 존재하는 데이터를 `pool.map` 을 통해
 자식에게 `pickle` 형태로 전달한다.
 
 즉, `map` 메소드 호출 시 자동으로 `pickle` 을 통한 자식 프로세스로의 데이터 전송이 된다는 것이다.
@@ -289,35 +272,33 @@ if __name__ == '__main__':
 
 ### Pipe로 자식 프로세스에 데이터 전송하기
 
-OS가 자식 프로세스를 생성하면 생성된 프로세스는 
+OS가 자식 프로세스를 생성하면 생성된 프로세스는
 부모 프로세스의 초기화 데이터를 먼저 기다린다.
 
 자식 프로세스가 가장 먼저 기다리게 될 초기화 데이터는 아래와 같다.
 
-1) 준비 데이터(Preparation Data) 객체
+1. 준비 데이터(Preparation Data) 객체
 
 - 실행 디렉터리, 시작 방법, 명령줄 인자 등과 같은 부모 프로세스의 정보를 일부 담고 있는 딕셔너리
-    
-    ```python
-    >>> import multiprocessing.spawn
-    >>> import pprint
-    >>> pprint.pprint(multiprocessing.spawn.get_preparation_data("example"))
-    {'authkey': b'\x1b\x7f\x80\xa8\xc5\x03\xed# \xeb;\xb6\x15~\xae\xd0\xf4\x97:\xb5'
-                b'w\x1a\x02\xce\xb29\xdd\x18\x0bx\xc8\xbe',
-     'dir': '/Users/wooy0ng/Desktop/playground/practice-cpython/practice',
-     'log_to_stderr': False,
-     'name': 'example',
-     'orig_dir': '/Users/wooy0ng/Desktop/playground/practice-cpython/practice',
-     'start_method': 'spawn',
-     'sys_argv': [''],
-    ```
-    
+  ```python
+  >>> import multiprocessing.spawn
+  >>> import pprint
+  >>> pprint.pprint(multiprocessing.spawn.get_preparation_data("example"))
+  {'authkey': b'\x1b\x7f\x80\xa8\xc5\x03\xed# \xeb;\xb6\x15~\xae\xd0\xf4\x97:\xb5'
+              b'w\x1a\x02\xce\xb29\xdd\x18\x0bx\xc8\xbe',
+   'dir': '/Users/wooy0ng/Desktop/playground/practice-cpython/practice',
+   'log_to_stderr': False,
+   'name': 'example',
+   'orig_dir': '/Users/wooy0ng/Desktop/playground/practice-cpython/practice',
+   'start_method': 'spawn',
+   'sys_argv': [''],
+  ```
 
-2) `BaseProcess` 의 자식 클래스 인스턴스
+2. `BaseProcess` 의 자식 클래스 인스턴스
 
 - 호출 방식과 운영 체제에 따라 아래의 `BaseProcess` 의 자식 클래스 중 하나를 인스턴스화 한다
-    - POSIX: `ForkProcess` 클래스를 인스턴스화한다.
-    - 윈도우: `SpawnProcess` 클래스를 인스턴스화한다.
+  - POSIX: `ForkProcess` 클래스를 인스턴스화한다.
+  - 윈도우: `SpawnProcess` 클래스를 인스턴스화한다.
 
 위 2개의 초기화 데이터는 모두 `pickle` 로 직렬화되어
 부모 프로세스의 파이프 스트림으로 전송된다.
@@ -328,13 +309,11 @@ OS가 자식 프로세스를 생성하면 생성된 프로세스는
 
 1. 자식 프로세스를 생성한다. (Spawn 또는 Fork 방식으로)
 2. 자식 프로세스는 부모 프로세스로부터 준비 데이터 객체, BaseProcess의 자식 클래스 인스턴스를 받는다.
-    
-    → 자식 프로세스는 부모로부터 초기화 데이터를 `pickle` 형태로 Pipe를 통해 전달받는다.
-    
-3. 초기화된 자식 프로세스는 준비 상태가 되며, 
-언제든지 부모로부터 작업 인자(함수의 인자)를 받을 준비를 한다.
 
- 
+   → 자식 프로세스는 부모로부터 초기화 데이터를 `pickle` 형태로 Pipe를 통해 전달받는다.
+
+3. 초기화된 자식 프로세스는 준비 상태가 되며,
+   언제든지 부모로부터 작업 인자(함수의 인자)를 받을 준비를 한다.
 
 ---
 
@@ -364,20 +343,20 @@ def spawn_main(pipe_handle, parent_pid=None, tracker_fd=None):
             source_process = None
         new_handle = reduction.duplicate(pipe_handle,
                                          source_process=source_process)
-                                         
-                                         
+
+
         fd = msvcrt.open_osfhandle(new_handle, os.O_RDONLY)
         parent_sentinel = source_process
-        
-        
+
+
     else:
         from . import resource_tracker
         resource_tracker._resource_tracker._fd = tracker_fd
-        
+
         fd = pipe_handle
         parent_sentinel = os.dup(pipe_handle)
-        
-        
+
+
     exitcode = _main(fd, parent_sentinel)
     sys.exit(exitcode) # 반환 값을 프로세스의 종료 코드로 사용하고 인터프리터를 종료
 ```
@@ -386,12 +365,11 @@ def spawn_main(pipe_handle, parent_pid=None, tracker_fd=None):
 
 `_main`은 fd 바이트 스트림의 이진 데이터를 역직렬화 하는 함수이다.
 
-**fd:**  직렬화된 이진 데이터를 읽기 위한 `파일 디스크립터`
+**fd:** 직렬화된 이진 데이터를 읽기 위한 `파일 디스크립터`
 
 **parent_sentinel:** 자식 프로세스가 실행되는 도중 부모 프로세스가 종료됐는 지 감시하는 부모 프로세스 감시자 역할, `프로세스 핸들` 혹은 `파일 디스크립터`
 
 두 시스템에서 **parent_sentinel 구현이** **system platform**에 따라 구현이 다른 것을 알 수 있다. 이는 각 시스템의 프로세스를 핸들링 하는 방식이 다르기 때문이다.
-
 
 이번엔 `_main` 함수에 대해 자세히 알아보자.
 
@@ -415,8 +393,6 @@ def _main(fd, parent_sentinel):
 ```
 
 `_bootstrap()`은 역직렬화된 데이터로부터 `BaseProcess` 인스턴스를 생성하고 마지막으로 `BaseProcess.run()`으로 실행 대상 함수를 주어진 인자와 함께 호출한다.
-
-
 
 ```python
 def run(self):
@@ -443,7 +419,7 @@ def run(self):
 
 ## 10.3.6 큐와 파이프를 사용해 데이터 교환하기
 
-지금까지 자식 프로세스를 스폰하는 방법과 파이프를 직렬화 스트림으로 사용하여 자식 프로세스에 실행할 함수와 그 인자를 전달하는 방법에 대해 알아보았다. 
+지금까지 자식 프로세스를 스폰하는 방법과 파이프를 직렬화 스트림으로 사용하여 자식 프로세스에 실행할 함수와 그 인자를 전달하는 방법에 대해 알아보았다.
 
 프로세스 간 통신에는 작업 특성에 따라 `큐와 파이프` 두 가지 방법을 사용할 수 있다. 큐와 파이프에 대해 자세히 알아보기 전에 운영체제가 `세마포어`라는 변수를 사용하여 자원을 적절하지 못한 접근으로부터 보호하는 방법에 대해 알아보자.
 
@@ -456,26 +432,20 @@ def run(self):
 ### **세마포어의 정의와 작동 방식**
 
 - **P 연산 (acquire 또는 wait)**: 세마포어의 값을 감소시키는 연산이다. 만약 세마포어의 값이 0이면 (즉, 자원이 모두 사용 중이면), 프로세스는 세마포어가 0보다 커질 때까지 (자원이 해제될 때까지) 대기한다.
-    
-    ```c
-    p(sem) {
-    	while sem=0 do wait;
-        sem--;
-    }
-    ```
-    
+  ```c
+  p(sem) {
+  	while sem=0 do wait;
+      sem--;
+  }
+  ```
 - **V 연산 (release 또는 signal)**: 세마포어의 값을 증가시키는 연산이다. 이 연산은 다른 프로세스들이 자원을 사용할 수 있도록 세마포어 값을 증가시킨다.
-    
-    ```c
-    v(sem) {
-    	sem++;
-    	if (대기중인 프로세스가 있다면)
-        	대기 중인 첫 번째 프로세스 동작시킴
-    }
-    ```
-    
-
-
+  ```c
+  v(sem) {
+  	sem++;
+  	if (대기중인 프로세스가 있다면)
+      	대기 중인 첫 번째 프로세스 동작시킴
+  }
+  ```
 
 세마포어는 **스레드 안정성과 프로세스 안정성을 모두 보장**하기 때문에 Cpython은 멀티프로세싱에 세마포어를 사용한다. 동일한 세마포어에 대한 잠재적인 읽기 또는 쓰기 데드락은 운영체제가 처리한다.
 
@@ -503,14 +473,11 @@ posix에서는 <semaphore.h> API들이 사용된다.
 #define SEM_UNLINK(name) sem_unlink(name)
 ```
 
-
 ## Queue
 
 큐는 여러 프로세스 간에 작은 데이터를 주고받기 좋은 방법이다.
 
 이전에도 사용한 멀티프로세싱 예제에 `multiprocessing.Manager()` 인스턴스와 두 개의 큐를 적용해 보자.
-
-
 
 1. `inputs`로 화씨 데이터를 입력
 2. `outputs`로 변환된 섭씨 데이터를 출력
@@ -525,7 +492,7 @@ def to_celsius(input: mp.Queue, output: mp.Queue):
     c = (f - 32) * (5/9)
     output.put(c)
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     mp.set_start_method('spawn')
     pool_manager = mp.Manager()
     with mp.Pool(2) as pool:
@@ -569,14 +536,11 @@ if __name__ == '__main__':
 
 화씨-섭씨 변환은 사실 병렬 실행에 적합하다고 볼 수 없는 작고 사소한 연산 작업이다. 워커 프로세스가 cpu 집약적인 연산을 수행하는 경우라면 멀티 cpu 또는 멀티코어 컴퓨터에서 큰 성능 향상을 얻을 수 있을 것이다.
 
-    
-
 ### 파이프
 
 `multiprocessing` 패키지는 `Pipe` 타입을 제공한다. 파이프를 인스턴스화하면 부모 쪽 연결과 자식 쪽 연결, 두 개의 연결이 반환된다. 두 연결 모두 데이터를 보낼 수도, 받을 수도 있다.
 
 ![pipe1](../images/10_parallel_and_concurrent/pipe1.png)
-
 
 예제에 파이프를 적용하려면 `pool.apply()`를 `pool.apply_async()`로 변경해야 한다. 변경하면 다음 프로세스가 논블로킹으로 실행된다.
 
@@ -605,7 +569,7 @@ if __name__ == '__main__':
         child_pipe.close()
 ```
 
-이 줄에서는 여러 프로세스가 동시에 부모 파이프에서 값을 읽어 버릴 수도 있다. 
+이 줄에서는 여러 프로세스가 동시에 부모 파이프에서 값을 읽어 버릴 수도 있다.
 
 `f = child_pipe.recv()`
 
@@ -651,10 +615,10 @@ if __name__ == '__main__':
         for i in range(110, 150, 10):
             parent_pipe.send(i)
             results.append(pool.apply_async(to_celsius, args=(child_pipe, child_lock)))
-        
+
         for result in results:
             print(parent_pipe.recv())
-        
+
         parent_pipe.close()
         child_pipe.close()
 ```
@@ -690,22 +654,22 @@ import time
 timeout = 1.0
 
 def check_port(host: str, port: int, results: Queue):
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.settimeout(timeout)
 	result = sock.connect_ex((host, port))
 	if result == 0:
 	        results.put(port)
 	sock.close()
-    
-    
+
+
 if __name__ == '__main__':
 	start = time.time()
-	host = "localhost" # Replace with a host you own 
+	host = "localhost" # Replace with a host you own
 	results = Queue()
 	for port in range(80, 100):
-		check_port(host, port, results) 
+		check_port(host, port, results)
 	while not results.empty():
-		print("Port {0} is open".format(results.get())) 
+		print("Port {0} is open".format(results.get()))
 	print("Completed scan in {0} seconds".format(time.time() - start))
 ```
 
@@ -730,8 +694,8 @@ def check_port(host: str, port: int, results: mp.Queue):
         results.put(port)
     #time.sleep(1)
     sock.close()
-    
-    
+
+
 if __name__ == '__main__':
     start = time.time()
     processes = []
@@ -752,17 +716,15 @@ port, outputs)))
 start))
 ```
 
-기대했던 것처럼 여러 포트를 병렬로 테스트해 속도가 빨라진다. 
+기대했던 것처럼 여러 포트를 병렬로 테스트해 속도가 빨라진다.
 
 ```python
 Completed scan in 19.171173786407470703 seconds
 ```
 
-
-
 ## 10.3.9 멀티프로세싱 요약
 
- 멀티프로세싱은 확장 가능한 파이썬용 `병렬 실행` API를 제공한다. 프로세스 간에 데이터를 공유할 수도 있고 CPU 집약적인 작업을 병렬작업으로 쪼개서 멀티 코어 또는 멀티 CPU 컴퓨터의 장점을 활용할 수도 있다.
+멀티프로세싱은 확장 가능한 파이썬용 `병렬 실행` API를 제공한다. 프로세스 간에 데이터를 공유할 수도 있고 CPU 집약적인 작업을 병렬작업으로 쪼개서 멀티 코어 또는 멀티 CPU 컴퓨터의 장점을 활용할 수도 있다.
 
 `CPU 집약적인 작업`이 아닌 `I/O 집약적인 작업`의 경우에는 멀티프로세싱이 적합하지 않다.
 
@@ -774,6 +736,6 @@ I/O 작업과 짧은 작업의 시나리오에 대해서는 다음 장에 알아
 
 (GIL: 한 시점에 단 하나의 스레드만이 파이썬 객체에 접근하도록 허용하는 메커니즘)
 
-(한 스레드가  I/O 작업 중에는 GIL이 해제되고 다른 스레드가 CPU시간을 사용하므로 효율적)
+(한 스레드가 I/O 작업 중에는 GIL이 해제되고 다른 스레드가 CPU시간을 사용하므로 효율적)
 
 ![process_and_thread](../images/10_parallel_and_concurrent/process_and_thread.png)
